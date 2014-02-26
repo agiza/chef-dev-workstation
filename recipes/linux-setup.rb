@@ -95,7 +95,7 @@ gem_package 'berkshelf' do
 end
 
 gem_package 'json' do
-  version '<= 1.7.7'
+  version '<= 1.8.1'
 end
 
 gem_package 'foodcritic' do

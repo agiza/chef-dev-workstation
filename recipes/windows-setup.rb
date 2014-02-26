@@ -6,24 +6,24 @@
 # general node - we're avoiding using package/windows_package resource to allow this recipe to run via chef-apply so there are no outside dependencies.
 
 # Download Sublime
-remote_file 'c:/chef/Sublime_Text_2.0.2_x64_Setup.exe' do
+remote_file "#{Chef::Config[:file_cache_path]}/Sublime_Text_2.0.2_x64_Setup.exe" do
   source 'http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.2%20x64%20Setup.exe'
 end
 
 # Install Sublime
 batch 'install_sublime' do
-  code 'c:\chef\Sublime_Text_2.0.2_x64_Setup.exe /VERYSILENT /NORESTART'
+  code "#{Chef::Config[:file_cache_path]}\Sublime_Text_2.0.2_x64_Setup.exe /VERYSILENT /NORESTART"
   not_if { ::File.exists?('C:\Program Files\Sublime Text 2\sublime_text.exe') }
 end
 
 # Download Notepad++
-remote_file 'c:/chef/npp.6.4.5.Installer.exe' do
+remote_file "#{Chef::Config[:file_cache_path]}/npp.6.4.5.Installer.exe" do
   source 'http://download.tuxfamily.org/notepadplus/6.4.5/npp.6.4.5.Installer.exe'
 end
 
 # Install Notepad++
 batch 'install_notepad++' do
-  code 'c:\chef\npp.6.4.5.Installer.exe /S'
+  code "#{Chef::Config[:file_cache_path]}\npp.6.4.5.Installer.exe /S"
   not_if { ::File.exists?('C:\Program Files (x86)\Notepad++\notepad++.exe') }
 end
 
@@ -61,12 +61,12 @@ powershell_script 'enable_quick_edit_mode' do
 end
 
 # Download Git
-remote_file 'c:/chef/Git-1.8.5.2-preview20131230.exe' do
+remote_file "#{Chef::Config[:file_cache_path]}/Git-1.8.5.2-preview20131230.exe" do
   source 'https://msysgit.googlecode.com/files/Git-1.8.5.2-preview20131230.exe'
 end
 
 batch 'install_git' do
-  code 'c:\chef\Git-1.8.5.2-preview20131230.exe /SP- /VERYSILENT /SUPPRESSMSGBOXES /LOG="%temp%\git-installer.log" /NORESTART'# /SAVEINF="C:\Temp\git-settings.txt"'
+  code "#{Chef::Config[:file_cache_path]}\Git-1.8.5.2-preview20131230.exe /SP- /VERYSILENT /SUPPRESSMSGBOXES /LOG=%temp%\git-installer.log /NORESTART"# /SAVEINF="C:\Temp\git-settings.txt"'
   not_if { ::File.exists?('C:\Program Files (x86)\Git\cmd\git.exe') && ::File.exists?('C:\Program Files (x86)\Git\bin\git.exe') }
   # code 'c:\chef\Git-1.8.5.2-preview20131230.exe /SP- /VERYSILENT /SUPPRESSMSGBOXES /LOG="C:\Temp\git-installer.log" /NORESTART'# /SAVEINF="C:\Temp\git-settings.txt"'
   notifies :run, 'batch[set_path_for_git]'
@@ -85,7 +85,7 @@ gem_package 'berkshelf' do
 end
 
 gem_package 'json' do
-  version '<= 1.7.7'
+  version '<= 1.8.1'
 end
 
 gem_package 'foodcritic' do
