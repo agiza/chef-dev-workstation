@@ -119,7 +119,6 @@ end
 #   source "https://dl.bintray.com/mitchellh/packer/0.5.1_windows_amd64.zip"
 # end
 
-
 ## Download and install Open SSL and Visual C++ 2008 Redistributables
 # http://slproweb.com/products/Win32OpenSSL.html
 # http://www.microsoft.com/en-us/download/details.aspx?id=29 // http://download.microsoft.com/download/1/1/1/1116b75a-9ec3-481a-a3c8-1777b5381140/vcredist_x86.exe

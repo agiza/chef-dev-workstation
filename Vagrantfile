@@ -87,6 +87,6 @@ Vagrant.configure('2') do |config|
         "recipe[#{cookbook_name}::default]"
     ]
 
-    chef.log_level = 'debug'
+    # chef.log_level = 'debug'
   end
 end
