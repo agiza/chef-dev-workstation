@@ -7,3 +7,5 @@
 #
 
 include_recipe 'chef-dev-workstation::linux-setup'
+
+execute 'echo "hello world"'
