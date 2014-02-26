@@ -24,17 +24,6 @@ user adminuser do
   not_if "getent passwd #{adminuser}"
 end
 
-user 'sean' do
-  comment 'Sean Carolan'
-  uid '1002'
-  home "/home/sean"
-  shell '/bin/bash'
-  group adminuser
-  supports manage_home: true
-  password node['admin']['password']
-  not_if "getent passwd sean"
-end
-
 ##############################################################################
 # Give the admin user sudo rights
 # Uncomment if you want your user to have sudo with NOPASSWD
