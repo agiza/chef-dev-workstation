@@ -12,7 +12,7 @@ end
 
 # Install Sublime
 batch 'install_sublime' do
-  code "#{Chef::Config[:file_cache_path]}\Sublime_Text_2.0.2_x64_Setup.exe /VERYSILENT /NORESTART"
+  code "#{Chef::Config[:file_cache_path]}/Sublime_Text_2.0.2_x64_Setup.exe /VERYSILENT /NORESTART"
   not_if { ::File.exists?('C:\Program Files\Sublime Text 2\sublime_text.exe') }
 end
 
@@ -23,7 +23,7 @@ end
 
 # Install Notepad++
 batch 'install_notepad++' do
-  code "#{Chef::Config[:file_cache_path]}\npp.6.4.5.Installer.exe /S"
+  code "#{Chef::Config[:file_cache_path]}/npp.6.4.5.Installer.exe /S"
   not_if { ::File.exists?('C:\Program Files (x86)\Notepad++\notepad++.exe') }
 end
 
