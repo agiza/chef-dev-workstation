@@ -83,6 +83,15 @@ end
 ##############################################################################
 # Lets install some packages!
 ##############################################################################
+# add the EPEL repo, because git
+yum_repository 'epel' do
+  description 'Extra Packages for Enterprise Linux'
+  mirrorlist 'http://mirrors.fedoraproject.org/mirrorlist?repo=epel-6&arch=$basearch'
+  gpgkey 'http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-6'
+  action :create
+end
+
+
 package_list = %w{git libxml2-devel libxslt-devel nano emacs}
 
 package_list.each do |pack|
