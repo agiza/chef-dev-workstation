@@ -1,8 +1,8 @@
 ---
 driver:
   name: ec2
-  ssh_key: /path/to/ssh_key.pem
-  security_group_ids: ["sg-8675309a"]
+  ssh_key: /Users/seancarolan/.ec2/pk-scarolan-opscode-awskey.pem
+  security_group_ids: ["sg-74b61e1d"]
   region: us-east-1
   availability_zone: us-east-1b
   require_chef_omnibus: true
