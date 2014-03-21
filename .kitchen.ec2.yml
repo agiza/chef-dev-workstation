@@ -1,0 +1,29 @@
+---
+driver:
+  name: ec2
+  ssh_key: /path/to/ssh_key.pem
+  security_group_ids: ["sg-8675309a"]
+  region: us-east-1
+  availability_zone: us-east-1b
+  require_chef_omnibus: true
+  iam_profile_name: chef-client
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: centos-6.4
+  - name: ubuntu-13.04
+
+suites:
+  - name: default
+    run_list:
+      - recipe[chef-dev-workstation]
+    attributes: {
+      admin: {
+        username: admin,
+        password: '$1$2COvX4FL$mTFCyb8YRGTOtLMTcEkeG1',
+        readme: 'The default password is simply "password".  Please change it.\nYou can run "openssl passwd -1 mypass" to generate a new encrypted password.'
+      }
+    }
+
