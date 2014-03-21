@@ -64,7 +64,7 @@ chef-apply \.windows-setup.rb
 
 **Test Driven Development:**
 
-For more information on Strainer, Rubocop, Foodcritic, and ChefSpec, check out these links:
+For more information on Strainer, Rubocop, Foodcritic, ChefSpec, or Test Kitchen, check out these links:
 
 Strainer - Harness for running test suites
 https://github.com/customink/strainer
@@ -77,6 +77,9 @@ http://www.foodcritic.io/
 
 ChefSpec - Unit test framework for Chef, based on Rspec
 https://github.com/sethvargo/chefspec
+
+Test Kitchen - Test harness tool with drivers for Vagrant, EC2, OpenStack and many other platforms
+http://kitchen.ci
 
 
 # Attributes
