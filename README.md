@@ -31,7 +31,7 @@ This cookbook contains recipes to set up a cookbook development environment on W
 * knife-essentials, knife-windows, knife-spork, knife-ec2 and knife-vsphere
 
 # Requirements
-This cookbook has been tested on CentOS 6.4 and Windows Server 2008r2. It will probably work on other platforms as well but we make no guarantees! You'll need to install Chef on your workstation before you can use this cookbook.  You can get Chef here:  http://www.getchef.com
+This cookbook has been tested on CentOS 6.4, Ubuntu 13.04, and Windows Server 2008r2. It will probably work on other platforms as well but we make no guarantees! You'll need to install Chef on your workstation before you can use this cookbook.  You can get Chef here:  http://www.getchef.com
 
 # Usage
 **Linux:**
