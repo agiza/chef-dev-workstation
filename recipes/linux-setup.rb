@@ -37,6 +37,7 @@ end
 
 ##############################################################################
 # More dots! Config files for the admin user
+# Enables rubocop syntax checker in Vim, and Ruby highlighting in nano
 ##############################################################################
 dotfiles = %w{bash_profile nanorc vimrc rubocop.yml}
 
@@ -49,12 +50,15 @@ dotfiles.each do |file|
   end
 end
 
+##############################################################################
+# Install platform-specific packages
+##############################################################################
 case node['platform']
-when 'centos', 'rhel'
+when 'centos', 'redhat', 'scientific', 'amazon', 'oracle'
   yum_repository 'epel' do
     description 'Extra Packages for Enterprise Linux'
-    mirrorlist 'http://mirrors.fedoraproject.org/mirrorlist?repo=epel-6&arch=$basearch'
-    gpgkey 'http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-6'
+    mirrorlist node['epel_yum_mirror_url']
+    gpgkey node['epel_gpg_key_url']
     action :create
   end
 
@@ -62,18 +66,21 @@ when 'centos', 'rhel'
     not_if "rpm -q gcc"
   end
 when 'ubuntu', 'debian'
-  package 'build-essentials' do
+  package 'build-essential' do
     action :install
   end
 end
 
-package_list = %w{git libxml2-devel libxslt-devel nano emacs}
-package_list.each do |pack|
+node['package_list'].each do |pack|
   package pack
 end
 
 ##############################################################################
 # Pimp my Vim
+# The following section will give you the Vim pathogen plugin manager,
+# the vim-sensible repo which sets up reasonable defaults for your vim config
+# and the syntastic syntax checker.  Configure your .vimrc with the dotfile
+# listed in the 'dotfiles' section above.
 ##############################################################################
 dirs = %w{.vim .vim/bundle .vim/autoload}
 
@@ -103,20 +110,12 @@ git "/home/#{adminuser}/.vim/bundle/syntastic" do
   group adminuser
 end
 
-# These gems have to have their versions constrained for compatibility
-#gem_package 'berkshelf' do
-#  version '= 2.0.12'
-#end
+##############################################################################
+# Gems everywhere!
+# Here we install all the RubyGems that we want to have for our workstation
+# environment. Add more if you like!
+##############################################################################
 
-#gem_package 'json' do
-#  version '<= 1.8.1'
-#end
-
-#gem_package 'foodcritic' do
-#  version '>= 3.0'
-#end
-
-# The rest do not need version constraints
 gems = %w{berkshelf foodcritic test-kitchen kitchen-vagrant chefspec strainer rubocop ruby-wmi knife-essentials knife-windows knife-spork knife-ec2 knife-vsphere}
 gems.each do |gem|
   gem_package gem
