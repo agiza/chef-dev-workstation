@@ -49,20 +49,25 @@ dotfiles.each do |file|
   end
 end
 
-# Add the EPEL repo, because git
-yum_repository 'epel' do
-  description 'Extra Packages for Enterprise Linux'
-  mirrorlist 'http://mirrors.fedoraproject.org/mirrorlist?repo=epel-6&arch=$basearch'
-  gpgkey 'http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-6'
-  action :create
-end
+case node['platform']
+when 'centos', 'rhel'
+  yum_repository 'epel' do
+    description 'Extra Packages for Enterprise Linux'
+    mirrorlist 'http://mirrors.fedoraproject.org/mirrorlist?repo=epel-6&arch=$basearch'
+    gpgkey 'http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-6'
+    action :create
+  end
 
-execute "yum -y groupinstall 'Development Tools'" do
-  not_if "rpm -q gcc"
+  execute "yum -y groupinstall 'Development Tools'" do
+    not_if "rpm -q gcc"
+  end
+when 'ubuntu', 'debian'
+  package 'build-essentials' do
+    action :install
+  end
 end
 
 package_list = %w{git libxml2-devel libxslt-devel nano emacs}
-
 package_list.each do |pack|
   package pack
 end
@@ -99,20 +104,20 @@ git "/home/#{adminuser}/.vim/bundle/syntastic" do
 end
 
 # These gems have to have their versions constrained for compatibility
-gem_package 'berkshelf' do
-  version '= 2.0.12'
-end
+#gem_package 'berkshelf' do
+#  version '= 2.0.12'
+#end
 
-gem_package 'json' do
-  version '<= 1.8.1'
-end
+#gem_package 'json' do
+#  version '<= 1.8.1'
+#end
 
-gem_package 'foodcritic' do
-  version '>= 3.0'
-end
+#gem_package 'foodcritic' do
+#  version '>= 3.0'
+#end
 
 # The rest do not need version constraints
-gems = %w{test-kitchen kitchen-vagrant chefspec strainer rubocop ruby-wmi knife-essentials knife-windows knife-spork knife-ec2 knife-vsphere}
+gems = %w{berkshelf foodcritic test-kitchen kitchen-vagrant chefspec strainer rubocop ruby-wmi knife-essentials knife-windows knife-spork knife-ec2 knife-vsphere}
 gems.each do |gem|
   gem_package gem
 end
