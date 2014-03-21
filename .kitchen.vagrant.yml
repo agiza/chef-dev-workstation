@@ -6,8 +6,8 @@ provisioner:
   name: chef_zero
 
 platforms:
-  - name: centos-6.5
-  - name: opscode-ubuntu-13.10
+  - name: centos-6.4
+  - name: opscode-ubuntu-13.04
 
 suites:
   - name: default
