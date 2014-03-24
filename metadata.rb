@@ -5,5 +5,5 @@ maintainer_email 'scarolan@getchef.com'
 license          'All rights reserved'
 description      'Installs/Configures a workstation cookbook development environment'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '1.0.0'
+version          '1.1.0'
 depends          'yum'
