@@ -1,3 +1,5 @@
 rubocop:    rubocop $COOKBOOK
 foodcritic: foodcritic -f any $SANDBOX/$COOKBOOK
 chefspec:   rspec --color -f d
+# Uncomment this line if you've got Test Kitchen set up
+# kitchen: kitchen test

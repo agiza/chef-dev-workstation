@@ -1,13 +1,18 @@
 # encoding: UTF-8
 require 'spec_helper'
 
-describe 'chef-dev-workstation::linux-setup' do
-  # Set some variables here if you wish, these are examples
-  let(:adminuser) { 'admin' }
-  # let(:homedir) {'/local/home'}
-  # let(:java_home) {"#{userhome}/java"}
+RSpec.configure do |config|
+  config.platform = 'centos'
+  config.version = '6.4'
+end
 
+describe 'chef-dev-workstation::linux-setup' do
+  let(:adminuser) { 'admin' }
   let(:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
+
+  before do
+    stub_command("rpm -q gcc").and_return(true)
+  end
 
   # ChefSpec doesn't run real commands, so we stub them here
   before do
@@ -55,7 +60,7 @@ describe 'chef-dev-workstation::linux-setup' do
   end
 
   it 'installs the required RubyGems' do
-    gems = %w{berkshelf json foodcritic test-kitchen kitchen-vagrant chefspec strainer rubocop ruby-wmi knife-essentials knife-windows knife-spork knife-ec2 knife-vsphere}
+    gems = %w{berkshelf foodcritic test-kitchen kitchen-vagrant chefspec strainer rubocop ruby-wmi knife-essentials knife-windows knife-spork knife-ec2 knife-vsphere}
     gems.each do |gem|
       expect(chef_run).to install_gem_package(gem)
     end
