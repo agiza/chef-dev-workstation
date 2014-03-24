@@ -93,13 +93,13 @@ gem_package 'foodcritic' do
 end
 
 # Gems without version constraints
-gems = %w{test-kitchen kitchen-vagrant chefspec strainer rubocop ruby-wmi knife-essentials knife-windows knife-spork knife-ec2 knife-vsphere}
+gems = %w(test-kitchen kitchen-vagrant chefspec strainer rubocop ruby-wmi knife-essentials knife-windows knife-spork knife-ec2 knife-vsphere)
 gems.each do |gem|
   gem_package gem
 end
 
 # Optional Gems
-optional_gems = %w{pry}
+optional_gems = %w(pry)
 optional_gems.each do |gem|
   gem_package gem
 end

@@ -56,10 +56,10 @@ strainer test
 
 **Windows:**
 
-Usage is fairly simple.  Either clone the git repo or just copy the windows-setup.rb recipe somewhere onto your Windows machine.  Then you can run the following command to set things up:
+Usage is fairly simple.  Either clone the git repo or just copy the windows_setup.rb recipe somewhere onto your Windows machine.  Then you can run the following command to set things up:
 
 ```
-chef-apply \.windows-setup.rb
+chef-apply \.windows_setup.rb
 ```
 
 **Test Driven Development:**
@@ -83,7 +83,7 @@ http://kitchen.ci
 
 
 # Attributes
-There are only two configurable attributes, and they are for the linux-setup recipe. They are the username and MD5 hashed password of your admin user:
+There are only two configurable attributes, and they are for the linux_setup recipe. They are the username and MD5 hashed password of your admin user:
 
 ```
 default['admin']['username']
@@ -93,11 +93,11 @@ default['admin']['password']
 The default username is "admin" and the default password is simply "password". Super secure eh? You should probably change this if you are going to use this recipe in the real world.
 
 # Recipes
-default.rb - This includes the linux-setup recipe.
+default.rb - This includes the linux_setup recipe.
 
-linux-setup.rb - Installs the workstation environment on CentOS/RHEL flavored machines.
+linux_setup.rb - Installs the workstation environment on CentOS/RHEL flavored machines.
 
-windows-setup.rb - Installs the workstation environment on Windows machines.
+windows_setup.rb - Installs the workstation environment on Windows machines.
 
 # Authors
 

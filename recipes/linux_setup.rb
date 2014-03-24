@@ -1,7 +1,6 @@
 # encoding: UTF-8
-#
 # Cookbook Name:: chef-dev-workstation
-# Recipe:: linux-setup
+# Recipe:: linux_setup
 #
 adminuser = node['admin']['username']
 
@@ -39,7 +38,7 @@ end
 # More dots! Config files for the admin user
 # Enables rubocop syntax checker in Vim, and Ruby highlighting in nano
 ##############################################################################
-dotfiles = %w{bash_profile nanorc vimrc rubocop.yml}
+dotfiles = %w(bash_profile nanorc vimrc rubocop.yml)
 
 dotfiles.each do |file|
   template "/home/#{adminuser}/.#{file}" do
@@ -82,7 +81,7 @@ end
 # and the syntastic syntax checker.  Configure your .vimrc with the dotfile
 # listed in the 'dotfiles' section above.
 ##############################################################################
-dirs = %w{.vim .vim/bundle .vim/autoload}
+dirs = %w(.vim .vim/bundle .vim/autoload)
 
 dirs.each do |dir|
   directory "/home/#{adminuser}/#{dir}" do
@@ -116,7 +115,7 @@ end
 # environment. Add more if you like!
 ##############################################################################
 
-gems = %w{berkshelf foodcritic test-kitchen kitchen-vagrant chefspec strainer rubocop ruby-wmi knife-essentials knife-windows knife-spork knife-ec2 knife-vsphere}
+gems = %w(berkshelf foodcritic test-kitchen kitchen-vagrant chefspec strainer rubocop ruby-wmi knife-essentials knife-windows knife-spork knife-ec2 knife-vsphere)
 gems.each do |gem|
   gem_package gem
 end
