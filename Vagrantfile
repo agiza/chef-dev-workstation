@@ -6,6 +6,8 @@
 # We recommend switching to test kitchen instead of using Vagrant
 # directly.
 
+# Seriously.  Go download test kitchen and learn to use it.
+
 cookbook_name = File.basename(Dir.getwd)
 
 Vagrant.configure('2') do |config|
@@ -89,7 +91,7 @@ Vagrant.configure('2') do |config|
     }
 
     chef.run_list = [
-        "recipe[#{cookbook_name}::default]"
+      "recipe[#{cookbook_name}::default]"
     ]
 
     # chef.log_level = 'debug'
