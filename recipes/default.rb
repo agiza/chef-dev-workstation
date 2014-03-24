@@ -6,4 +6,4 @@
 # Copyright (C) 2014 Chef
 #
 
-include_recipe 'chef-dev-workstation::linux-setup'
+include_recipe 'chef-dev-workstation::linux_setup'
