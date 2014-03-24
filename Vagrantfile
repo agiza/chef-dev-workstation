@@ -3,7 +3,7 @@
 # vi: set ft=ruby :
 
 # NOTE: vagrant-berkshelf is deprecated.  Long live test kitchen.
-# We recommend switching to test kitchen instead of using Vagrant 
+# We recommend switching to test kitchen instead of using Vagrant
 # directly.
 
 cookbook_name = File.basename(Dir.getwd)
@@ -68,7 +68,7 @@ Vagrant.configure('2') do |config|
 
   # Enabling the Berkshelf plugin. To enable this globally, add this configuration
   # option to your ~/.vagrant.d/Vagrantfile file
-  # config.berkshelf.enabled = true
+  config.berkshelf.enabled = true
 
   # Enable the chef omnibus plugin so we get the latest client
   config.omnibus.chef_version = :latest
