@@ -36,7 +36,7 @@ This cookbook has been tested on CentOS 6.4, Ubuntu 13.04, and Windows Server 20
 # Usage
 **Linux:**
 
-If you're using Vagrant and Virtualbox, you can simply clone the repo and run "vagrant up".  That will spin up a CentOS 6.4 virtual machine and configure everything for you.  Or if you want to run it on your own VM or workstation, read on...
+If you're using Vagrant and Virtualbox, you can simply clone the repo and run "vagrant up --provision".  That will spin up a CentOS 6.4 virtual machine and configure everything for you.  Or if you want to run it on your own VM or workstation, read on...
 
 The setup recipe uses the built-in Omnibus Ruby that ships with Chef, so you don't have to mess around with RubyGems, Bundler or other dependencies. Usage is fairly simple, just run the default recipe! If you don't want to register your workstation on your Chef Server, this one-liner will run the default recipe using chef-solo. Run it from the parent directory where the linux-chef-workstation directory is located. This command must be run as root or with sudo.
 
@@ -51,6 +51,7 @@ If you're new to test-driven cookbook development, you can get started right awa
 After running the default recipe to set up your workstation, you can run the following from within the cookbook to execute Rubocop, ChefSpec, and Foodcritic tests:
 
 ```
+berks install
 strainer test
 ```
 

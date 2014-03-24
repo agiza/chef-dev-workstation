@@ -15,7 +15,7 @@ suites:
       - recipe[chef-dev-workstation]
     attributes: {
       admin: {
-        username: admin,
+        username: 'admin',
         password: '$1$2COvX4FL$mTFCyb8YRGTOtLMTcEkeG1',
         readme: 'The default password is simply "password".  Please change it.\nYou can run "openssl passwd -1 mypass" to generate a new encrypted password.'
       }
