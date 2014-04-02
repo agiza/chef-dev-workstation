@@ -1,14 +1,14 @@
 ---
 driver_plugin: docker
+provisioner:
+  name: chef_zero
 driver_config:
   require_chef_omnibus: true
-
 platforms:
 - name: centos
   driver_config:
     image: "centos"
     platform: "rhel"
-
 suites:
   - name: default
     run_list:
