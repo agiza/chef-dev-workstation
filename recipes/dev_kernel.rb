@@ -21,9 +21,17 @@ end
 # first on the list in grub.conf.  It works well enough for our needs.
 execute "sed -i 's/^default=1/default=0/' /boot/grub/grub.conf" do
   not_if "grep 'default=0' /boot/grub/grub.conf"
+  notifies :run, "execute[reboot]"
 end
 
-# Reboot the machine if necessary to activate new kernel.
-execute "/sbin/shutdown -r 0" do
-  not_if "uname -r | grep '^3\.'"
+# Disable the abomination that is SELinux
+execute "sed -i 's/^SELINUX=.*/SELINUX=disabled/' /etc/selinux/config" do
+  not_if "grep '^SELINUX=disabled$' /etc/selinux/config"
+  notifies :run, "execute[reboot]"
+end
+
+# Reboot the machine to activate new kernel and disable SElinux permanently.
+execute "reboot" do
+  action :nothing
+  command "/sbin/shutdown -r 0"
 end
