@@ -116,7 +116,7 @@ end
 # environment. Add more if you like!
 ##############################################################################
 
-gems = %w(berkshelf foodcritic test-kitchen kitchen-vagrant chefspec strainer rubocop ruby-wmi knife-essentials knife-windows knife-spork knife-ec2 knife-vsphere knife-flip)
+gems = %w(berkshelf foodcritic test-kitchen kitchen-vagrant kitchen-docker chefspec strainer rubocop ruby-wmi knife-essentials knife-windows knife-spork knife-ec2 knife-vsphere knife-flip)
 gems.each do |gem|
   gem_package gem
 end
