@@ -14,3 +14,5 @@ Encoding:
   Enabled: false
 LeadingCommentSpace:
   Enabled: false
+SingleSpaceBeforeFirstArg:
+  Enabled: false

@@ -13,7 +13,7 @@ end
 # Install Sublime
 batch 'install_sublime' do
   code "#{Chef::Config[:file_cache_path]}/Sublime_Text_2.0.2_x64_Setup.exe /VERYSILENT /NORESTART"
-  not_if { ::File.exists?('C:\Program Files\Sublime Text 2\sublime_text.exe') }
+  not_if { ::File.exist?('C:\Program Files\Sublime Text 2\sublime_text.exe') }
 end
 
 # Download Notepad++
@@ -24,7 +24,7 @@ end
 # Install Notepad++
 batch 'install_notepad++' do
   code "#{Chef::Config[:file_cache_path]}/npp.6.4.5.Installer.exe /S"
-  not_if { ::File.exists?('C:\Program Files (x86)\Notepad++\notepad++.exe') }
+  not_if { ::File.exist?('C:\Program Files (x86)\Notepad++\notepad++.exe') }
 end
 
 powershell_script 'change_execution_policy' do
@@ -67,7 +67,7 @@ end
 
 batch 'install_git' do
   code "#{Chef::Config[:file_cache_path]}\Git-1.8.5.2-preview20131230.exe /SP- /VERYSILENT /SUPPRESSMSGBOXES /LOG=%temp%\git-installer.log /NORESTART"# /SAVEINF="C:\Temp\git-settings.txt"'
-  not_if { ::File.exists?('C:\Program Files (x86)\Git\cmd\git.exe') && ::File.exists?('C:\Program Files (x86)\Git\bin\git.exe') }
+  not_if { ::File.exist?('C:\Program Files (x86)\Git\cmd\git.exe') && ::File.exist?('C:\Program Files (x86)\Git\bin\git.exe') }
   # code 'c:\chef\Git-1.8.5.2-preview20131230.exe /SP- /VERYSILENT /SUPPRESSMSGBOXES /LOG="C:\Temp\git-installer.log" /NORESTART'# /SAVEINF="C:\Temp\git-settings.txt"'
   notifies :run, 'batch[set_path_for_git]'
 end
