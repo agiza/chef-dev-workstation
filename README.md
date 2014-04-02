@@ -101,6 +101,8 @@ default.rb - This includes the linux_setup recipe.
 
 linux_setup.rb - Installs the workstation environment on CentOS/RHEL flavored machines.
 
+dev_kernel.rb - Installs a newer development kernel on CentOS boxes.  This is here for docker support.
+
 windows_setup.rb - Installs the workstation environment on Windows machines.
 
 # Authors
