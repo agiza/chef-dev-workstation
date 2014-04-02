@@ -17,4 +17,5 @@ bin/*
 .kitchen.local.yml
 .kitchen.vagrant.yml
 .kitchen.ec2.yml
+.kitchen.gce.yml
 commit

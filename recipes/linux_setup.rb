@@ -64,6 +64,7 @@ when 'centos', 'redhat', 'scientific', 'amazon', 'oracle'
   execute "yum -y groupinstall 'Development Tools'" do
     not_if "rpm -q gcc"
   end
+
 when 'ubuntu', 'debian'
   package 'build-essential' do
     action :install
