@@ -10,10 +10,12 @@ platforms:
   driver_config:
     image: centos:6.4
     platform: rhel
+    privileged: true
 - name: ubuntu-12.04
   driver_config:
     image: ubuntu:12.04
     platform: rhel
+    privileged: true
 suites:
   - name: default
     run_list:
