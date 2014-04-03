@@ -45,9 +45,8 @@ when 'ubuntu', 'debian'
   # Update our package cache
   execute 'apt-get update'
 
-  # Turn off apparmor
-  package 'apparmor-utils'
-  execute 'aa-complain /etc/apparmor.d/*'
+  # Turn off apparmor, remove it entirely
+  execute '/etc/init.d/apparmor stop; update-rc.d -f apparmor remove; apt-get --purge remove apparmor apparmor-utils libapparmor-perl libapparmor1'
 
   # Create the docker apt repo file
   template '/etc/apt/sources.list.d/docker.list' do
