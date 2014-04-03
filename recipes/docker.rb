@@ -42,7 +42,7 @@ when 'ubuntu', 'debian'
   # Install the docker apt repo key
   execute 'apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9'
   # Update our package cache
-  execute 'aptitude update'
+  execute 'apt-get update'
 
   # Create the docker apt repo file
   template '/etc/apt/sources.list.d/docker.list' do

@@ -66,7 +66,7 @@ when 'centos', 'redhat', 'scientific', 'amazon', 'oracle'
   end
 
 when 'ubuntu', 'debian'
-  execute 'aptitude update'
+  execute 'apt-get update'
 
   package 'build-essential' do
     action :install
