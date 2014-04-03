@@ -12,7 +12,7 @@ platforms:
     platform: ubuntu
     privileged: true
 suites:
-  - name: dind
+  - name: vmception
     run_list:
     - recipe[chef-dev-workstation::default]
     attributes:
