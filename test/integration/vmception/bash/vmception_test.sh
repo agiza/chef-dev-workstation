@@ -8,8 +8,8 @@ rm -rf chef-dev-workstation
 # Next we want to clone the chef-dev-workstation repo, install cookbook dependencies, then run our test suite."
 su - kitchen -c "git clone https://github.com/scarolan/chef-dev-workstation; cd ~/chef-dev-workstation; berks install; strainer test"
 
-# Stop apparmor
-/etc/init.d/apparmor stop
+# Put app armor into complain mode
+aa-complain /etc/apparmor.d/*
 
 # Start up another docker instance inside this one:
 /usr/local/bin/wrapdocker
