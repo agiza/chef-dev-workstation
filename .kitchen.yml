@@ -27,11 +27,3 @@ suites:
       admin:
         username: 'vagrant'
         password: '$1$/cjpQf6u$i9lY6beWk/8bk.D9heAor0'
-
-  - name: kitchen
-    run_list:
-      - recipe[chef-dev-workstation::default]
-    attributes:
-      admin:
-        username: 'kitchen'
-        password: '$1$Bk.Woknd$/MgXOLE3PS3fPYAIuaDJE.'
