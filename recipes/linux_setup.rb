@@ -66,12 +66,12 @@ when 'centos', 'redhat', 'scientific', 'amazon', 'oracle'
   end
 
 when 'ubuntu', 'debian'
+  execute 'aptitude update'
+
   package 'build-essential' do
     action :install
   end
 end
-
-execute 'aptitude update'
 
 node['package_list'].each do |pack|
   package pack
