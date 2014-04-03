@@ -41,7 +41,7 @@ This cookbook has been tested on CentOS 6.4, Ubuntu 13.04, and Windows Server 20
 
 If you're using Vagrant and Virtualbox, you can simply clone the repo and run "vagrant up --provision".  That will spin up a CentOS 6.4 virtual machine and configure everything for you.  Or if you want to run it on your own VM or workstation, read on...
 
-The setup recipe uses the built-in Omnibus Ruby that ships with Chef, so you don't have to mess around with RubyGems, Bundler or other dependencies. Usage is fairly simple, just run the default recipe! If you don't want to register your workstation on your Chef Server, this one-liner will run the default recipe using chef-solo. Run it from the parent directory where the linux-chef-workstation directory is located. This command must be run as root or with sudo.
+The setup recipe uses the built-in Omnibus Ruby that ships with Chef, so you don't have to mess around with RubyGems, Bundler or other dependencies. Usage is fairly simple, just run the default recipe! If you don't want to register your workstation on your Chef Server, this one-liner will run the default recipe using chef-solo. Run it from the parent directory where the chef-dev-workstation directory is located. This command must be run as root or with sudo.
 
 ```
 echo "cookbook_path ['$(pwd)']" > solo.rb; chef-solo -c solo.rb -o 'chef-dev-workstation'
@@ -57,6 +57,8 @@ After running the default recipe to set up your workstation, you can run the fol
 berks install
 strainer test
 ```
+
+There is also a docker.rb recipe that can install docker on CentOS or Ubuntu systems.  A reboot is run at the end of the recipe to update your kernel to a docker-friendly version.
 
 **Windows:**
 
