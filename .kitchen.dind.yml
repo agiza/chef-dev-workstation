@@ -12,7 +12,7 @@ platforms:
     platform: ubuntu
     privileged: true
 suites:
-  - name: default
+  - name: dind
     run_list:
     - recipe[chef-dev-workstation::default]
     attributes:
