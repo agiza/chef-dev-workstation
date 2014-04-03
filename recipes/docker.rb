@@ -55,12 +55,11 @@ when 'ubuntu', 'debian'
   end
 
   # Install a newer kernel and reboot if on 12.x versions
-  unless node['platform_version'] == '13.10'
     package 'linux-image-generic-lts-raring' do
       action :install
+      not_if { node['platform_version'] == '13.10' }
       notifies :run, "execute[reboot]"
     end
-  end
 
   # Reboot the machine to activate new kernel
   execute "reboot" do
