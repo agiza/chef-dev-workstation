@@ -4,7 +4,7 @@ group :development do
   gem 'berkshelf'
   gem 'test-kitchen'
   gem 'kitchen-vagrant'
-  gem 'kitchen-gce'
+  gem 'kitchen-docker'
   gem 'foodcritic', '>= 3.0'
   gem 'chefspec'
   gem 'strainer'
