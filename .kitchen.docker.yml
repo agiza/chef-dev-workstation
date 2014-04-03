@@ -18,3 +18,7 @@ suites:
   - name: default
     run_list:
     - recipe[chef-dev-workstation::default]
+    attributes:
+      admin:
+        username: 'kitchen'
+        password: '$1$Bk.Woknd$/MgXOLE3PS3fPYAIuaDJE.'
