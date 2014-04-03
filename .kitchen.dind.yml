@@ -13,7 +13,6 @@ platforms:
     privileged: true
     provision_command: 
       - sed -i '/exec bash/d' /usr/local/bin/wrapdocker
-      - wrapdocker
     
 suites:
   - name: vmception
