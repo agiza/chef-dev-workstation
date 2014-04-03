@@ -39,8 +39,10 @@ when 'centos', 'redhat', 'scientific', 'amazon', 'oracle'
   end
 when 'ubuntu', 'debian'
   # TO DO:  Make this idempotent
+  # Install the docker apt repo key
   execute 'apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9'
-  execute 'apt-get update'
+  # Update our package cache
+  execute 'aptitude update'
 
   # Create the docker apt repo file
   template '/etc/apt/sources.list.d/docker.list' do
