@@ -1,0 +1,21 @@
+---
+driver:
+  name: docker
+provisioner:
+  name: chef_zero
+driver_config:
+  require_chef_omnibus: true
+platforms:
+- name: dind
+  driver_config:
+    image: jpetazzo/dind
+    platform: ubuntu
+    privileged: true
+suites:
+  - name: default
+    run_list:
+    - recipe[chef-dev-workstation::default]
+    attributes:
+      admin:
+        username: 'kitchen'
+        password: '$1$Bk.Woknd$/MgXOLE3PS3fPYAIuaDJE.'
