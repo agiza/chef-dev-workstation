@@ -1,7 +1,6 @@
 require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
 require 'foodcritic'
-require 'kitchen'
 
 # Style tests. Rubocop and Foodcritic
 namespace :style do
@@ -36,10 +35,3 @@ task travis: ['style', 'spec']
 # Default
 #task default: ['style', 'spec', 'integration:vagrant']
 task default: ['style', 'spec']
-
-begin
-  require 'kitchen/rake_tasks'
-  Kitchen::RakeTasks.new
-rescue LoadError
-  puts ">>>>> Kitchen gem not loaded, omitting tasks" unless ENV['CI']
-end
