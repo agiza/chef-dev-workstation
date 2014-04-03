@@ -46,7 +46,7 @@ when 'ubuntu', 'debian'
   execute 'apt-get update'
 
   # Turn off apparmor
-  execute '/etc/init.d/apparmor teardown'
+  execute 'aa-complain /etc/apparmor.d/*'
 
   # Create the docker apt repo file
   template '/etc/apt/sources.list.d/docker.list' do
