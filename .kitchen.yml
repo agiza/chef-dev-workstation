@@ -6,11 +6,32 @@ provisioner:
   name: chef_zero
 
 platforms:
-  - name: ubuntu-12.04
   - name: centos-6.4
+  - name: ubuntu-12.04
+  - name: ubuntu-13.10
 
 suites:
   - name: default
     run_list:
       - recipe[chef-dev-workstation::default]
     attributes:
+      admin:
+        username: 'vagrant'
+        password: '$1$/cjpQf6u$i9lY6beWk/8bk.D9heAor0'
+
+  - name: docker
+    run_list:
+      - recipe[chef-dev-workstation::default]
+      - recipe[chef-dev-workstation::docker]
+    attributes:
+      admin:
+        username: 'vagrant'
+        password: '$1$/cjpQf6u$i9lY6beWk/8bk.D9heAor0'
+
+  - name: kitchen
+    run_list:
+      - recipe[chef-dev-workstation::default]
+    attributes:
+      admin:
+        username: 'kitchen'
+        password: '$1$Bk.Woknd$/MgXOLE3PS3fPYAIuaDJE.'
