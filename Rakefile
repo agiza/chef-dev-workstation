@@ -61,7 +61,8 @@ desc 'Run all tests on Travis'
 task travis: ['style', 'spec', 'integration:cloud']
 
 # Default
-task default: ['style', 'spec', 'integration:vagrant']
+#task default: ['style', 'spec', 'integration:vagrant']
+task default: ['style', 'spec']
 
 begin
   require 'kitchen/rake_tasks'
