@@ -46,6 +46,7 @@ when 'ubuntu', 'debian'
   execute 'apt-get update'
 
   # Turn off apparmor
+  package 'apparmor-utils'
   execute 'aa-complain /etc/apparmor.d/*'
 
   # Create the docker apt repo file
