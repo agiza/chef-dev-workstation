@@ -71,6 +71,8 @@ when 'ubuntu', 'debian'
   end
 end
 
+execute 'aptitude update'
+
 node['package_list'].each do |pack|
   package pack
 end
