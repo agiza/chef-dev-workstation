@@ -12,6 +12,7 @@ describe 'chef-dev-workstation::linux_setup' do
 
   before do
     stub_command("rpm -q gcc").and_return(true)
+    File.stub_chain(:readlines, :grep, :any?).and_return(true)
   end
 
   # ChefSpec doesn't run real commands, so we stub them here

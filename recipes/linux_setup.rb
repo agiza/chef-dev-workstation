@@ -30,7 +30,7 @@ end
 execute 'grant_sudo' do
   command "echo '#{node['admin']['username']}  ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers"
   only_if do
-    node['admin']['grantsudo'] && ! File.readlines("/etc/sudoers").grep(/#{node['admin']['username']}/).any?
+    node['admin']['grantsudo'] && !File.readlines("/etc/sudoers").grep(/#{node['admin']['username']}/).any?
   end
 end
 
