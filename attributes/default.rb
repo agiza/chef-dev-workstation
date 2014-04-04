@@ -8,6 +8,7 @@
 
 default['admin']['username'] = 'admin'
 default['admin']['password'] = '$1$2COvX4FL$mTFCyb8YRGTOtLMTcEkeG1'
+default['admin']['grantsudo'] = true
 
 # Specify package installation settings here.  Add more packages for your platform as you wish.
 case node['platform']

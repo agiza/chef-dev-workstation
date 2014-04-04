@@ -27,12 +27,12 @@ end
 # Give the admin user sudo rights
 # Uncomment if you want your user to have sudo with NOPASSWD
 ##############################################################################
-# template '/etc/sudoers' do
-#  source 'sudoers.erb'
-#  owner 'root'
-#  group 'root'
-#  mode '0440'
-# end
+execute 'grant_sudo' do
+  command "echo '#{node['admin']['username']}  ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers"
+  only_if do
+    node['admin']['grantsudo'] && ! File.readlines("/etc/sudoers").grep(/#{node['admin']['username']}/).any?
+  end
+end
 
 ##############################################################################
 # More dots! Config files for the admin user
