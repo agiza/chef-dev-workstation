@@ -5,6 +5,7 @@ provisioner:
   name: chef_zero
 driver_config:
   require_chef_omnibus: true
+  socket: tcp://localhost:4243
 platforms:
 - name: centos-6.4
   driver_config:
@@ -14,11 +15,19 @@ platforms:
   driver_config:
     image: ubuntu:12.04
     platform: ubuntu
+- name: ubuntu-13.10
+  driver_config:
+    image: ubuntu:13.10
+    platform: ubuntu
+- name: ubuntu-prebuilt
+  driver_config:
+    image: scarolan/chef_ubuntu_workstation
+    platform: ubuntu
 suites:
-  - name: default
+  - name: chefuser
     run_list:
     - recipe[chef-dev-workstation::default]
     attributes:
       admin:
-        username: 'kitchen'
-        password: '$1$Bk.Woknd$/MgXOLE3PS3fPYAIuaDJE.'
+        username: 'chef'
+        password: '$1$I/vRL6rk$uKtlDM/WKwSw3ShM7RITP/'

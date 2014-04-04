@@ -9,3 +9,8 @@
   run getent passwd admin
   [ "$status" -eq 0 ]
 }
+
+@test "Admin user has sudo rights on the system." {
+  run grep admin /etc/sudoers
+  [ "$status" -eq 0 ]
+}
