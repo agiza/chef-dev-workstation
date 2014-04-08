@@ -15,7 +15,7 @@ case node['platform']
 when 'centos', 'redhat', 'scientific', 'oracle', 'amazon'
   default['epel_yum_mirror_url'] = 'http://mirrors.fedoraproject.org/mirrorlist?repo=epel-6&arch=$basearch'
   default['epel_gpg_key_url'] = 'http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-6'
-  default['package_list'] = %w(git libxml2-devel libxslt-devel nano emacs vim-enhanced docker-io)
+  default['package_list'] = %w(git libxml2-devel libxslt-devel nano emacs vim-enhanced docker-io curl)
 when 'debian', 'ubuntu'
-  default['package_list'] = %w(git libxml2-dev libxslt-dev nano emacs vim)
+  default['package_list'] = %w(git libxml2-dev libxslt-dev nano emacs vim curl)
 end

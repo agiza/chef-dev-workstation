@@ -71,6 +71,11 @@ when 'ubuntu', 'debian'
   package 'build-essential' do
     action :install
   end
+
+  package 'lxc' do
+    action :install
+  end
+
 end
 
 node['package_list'].each do |pack|
