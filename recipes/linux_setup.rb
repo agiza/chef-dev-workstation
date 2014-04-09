@@ -1,4 +1,4 @@
-# encodin: UTF-8
+# encoding: UTF-8
 # Cookbook Name:: chef-dev-workstation
 # Recipe:: linux_setup
 #
@@ -67,7 +67,11 @@ when 'centos', 'redhat', 'scientific', 'amazon', 'oracle'
     not_if "rpm -q gcc"
   end
 when 'ubuntu', 'debian'
-  # No special items for ubuntu/debian.
+  # Update the apt cache!
+  aptupdate = execute 'apt-get update' do
+    action :nothing
+  end
+  aptupdate.run_action(:run)
 end
 
 # Take the default package_list for our platform and install packages

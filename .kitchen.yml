@@ -10,8 +10,8 @@ provisioner:
 
 platforms:
   - name: centos-6.4
-  - name: ubuntu-12.04
   - name: ubuntu-13.10
+  - name: ubuntu-12.04
 
 suites:
   - name: default
