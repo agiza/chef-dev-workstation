@@ -4,9 +4,9 @@
 #
 
 # Warn the user that they need to reboot if kernel was updated
-log 'message' do
-  level :info
+log 'reboot_message' do
   message <<-END.gsub(/^ {4}/, '')
+
     *********************************************************************
     *                    WARNING: Reboot Required                       *
     *            The kernel on this instance was updated.               *
@@ -36,14 +36,14 @@ when 'centos', 'redhat', 'scientific', 'amazon', 'oracle'
   execute "sed -i 's/^default=1/default=0/' /boot/grub/grub.conf" do
     not_if "grep 'default=0' /boot/grub/grub.conf"
     # notifies :run, "execute[reboot]"
-    notifies :write, 'log[message]'
+    notifies :write, 'log[reboot_message]'
   end
 
   # Disable the abomination that is SELinux
   execute "sed -i 's/^SELINUX=.*/SELINUX=disabled/' /etc/selinux/config" do
     not_if "grep '^SELINUX=disabled$' /etc/selinux/config"
     # notifies :run, "execute[reboot]"
-    notifies :write, 'log[message]'
+    notifies :write, 'log[reboot_message]'
   end
 
   # Enable and start docker
