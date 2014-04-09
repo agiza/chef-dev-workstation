@@ -104,7 +104,7 @@ dirs.each do |dir|
 end
 
 remote_file "/home/#{adminuser}/.vim/autoload/pathogen.vim" do
-  source 'https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim'
+  source 'http://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim'
   owner adminuser
   group adminuser
 end

@@ -3,6 +3,13 @@
 # Recipe:: docker
 #
 
+# Warn the user that they need to reboot if kernel was updated
+log 'message' do
+  level :info
+  message 'The kernel was updated, you should reboot this instance.'
+  action :nothing
+end
+
 case node['platform']
 when 'centos', 'redhat', 'scientific', 'amazon', 'oracle'
   remote_file "#{Chef::Config[:file_cache_path]}/elrepo-release-6-6.el6.elrepo.noarch.rpm" do
@@ -23,13 +30,15 @@ when 'centos', 'redhat', 'scientific', 'amazon', 'oracle'
   # first on the list in grub.conf.  It works well enough for our needs.
   execute "sed -i 's/^default=1/default=0/' /boot/grub/grub.conf" do
     not_if "grep 'default=0' /boot/grub/grub.conf"
-    notifies :run, "execute[reboot]"
+    # notifies :run, "execute[reboot]"
+    notifies :write, 'log[message]'
   end
 
   # Disable the abomination that is SELinux
   execute "sed -i 's/^SELINUX=.*/SELINUX=disabled/' /etc/selinux/config" do
     not_if "grep '^SELINUX=disabled$' /etc/selinux/config"
-    notifies :run, "execute[reboot]"
+    # notifies :run, "execute[reboot]"
+    notifies :write, 'log[message]'
   end
 
   # Reboot the machine to activate new kernel and disable SElinux permanently.
@@ -64,7 +73,8 @@ when 'ubuntu', 'debian'
   package 'linux-image-generic-lts-raring' do
     action :install
     not_if { node['platform_version'] == '13.10' }
-    notifies :run, "execute[reboot]"
+    # notifies :run, "execute[reboot]"
+    notifies :write, "log[message]"
   end
 
   # Reboot the machine to activate new kernel
@@ -72,4 +82,5 @@ when 'ubuntu', 'debian'
     action :nothing
     command "/sbin/shutdown -r 0"
   end
+
 end
