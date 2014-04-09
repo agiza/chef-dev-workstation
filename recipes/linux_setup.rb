@@ -54,6 +54,7 @@ end
 ##############################################################################
 case node['platform']
 when 'centos', 'redhat', 'scientific', 'amazon', 'oracle'
+  # This is required to install git, and possibly other packages.
   yum_repository 'epel' do
     description 'Extra Packages for Enterprise Linux'
     mirrorlist node['epel_yum_mirror_url']
@@ -66,7 +67,7 @@ when 'centos', 'redhat', 'scientific', 'amazon', 'oracle'
     not_if "rpm -q gcc"
   end
 when 'ubuntu', 'debian'
-  # Only the docker recipe requires special treatment.
+  # No special items for ubuntu/debian.
 end
 
 # Take the default package_list for our platform and install packages
