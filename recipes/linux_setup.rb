@@ -61,27 +61,20 @@ when 'centos', 'redhat', 'scientific', 'amazon', 'oracle'
     action :create
   end
 
+  # Yum resource doesn't support 'groupinstall', so we use execute instead.
   execute "yum -y groupinstall 'Development Tools'" do
     not_if "rpm -q gcc"
   end
-
 when 'ubuntu', 'debian'
+  # This bit of hackery is here because it won't work if we apt-get update
+  # during the run phase.  It must get executed during compile.
   aptupdate = execute 'apt-get update' do
     action :nothing
   end
-
   aptupdate.run_action(:run)
-
-  package 'build-essential' do
-    action :install
-  end
-
-  package 'lxc' do
-    action :install
-  end
-
 end
 
+# Take the default package_list for our platform and install packages
 node['package_list'].each do |pack|
   package pack
 end
@@ -103,8 +96,15 @@ dirs.each do |dir|
   end
 end
 
-remote_file "/home/#{adminuser}/.vim/autoload/pathogen.vim" do
-  source 'http://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim'
+# This was failing, so moved it to a template instead.
+#remote_file "/home/#{adminuser}/.vim/autoload/pathogen.vim" do
+#  source 'http://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim'
+#  owner adminuser
+#  group adminuser
+#end
+
+template "/home/#{adminuser}/.vim/autoload/pathogen.vim" do
+  source 'pathogen.vim.erb'
   owner adminuser
   group adminuser
 end
@@ -127,7 +127,6 @@ end
 # environment. Add more if you like!
 ##############################################################################
 
-gems = %w(berkshelf foodcritic test-kitchen kitchen-vagrant kitchen-docker chefspec strainer rubocop ruby-wmi knife-essentials knife-windows knife-spork knife-ec2 knife-vsphere knife-flip serverspec)
-gems.each do |gem|
+node['admin']['testgems'].each do |gem|
   gem_package gem
 end
