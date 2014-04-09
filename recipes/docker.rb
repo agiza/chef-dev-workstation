@@ -57,14 +57,22 @@ when 'ubuntu', 'debian'
   # Turn off apparmor, remove it entirely
   execute '/etc/init.d/apparmor stop; update-rc.d -f apparmor remove; apt-get -y --purge remove apparmor apparmor-utils libapparmor-perl libapparmor1'
 
-  # Create the docker apt repo file
-  template '/etc/apt/sources.list.d/docker.list' do
+  # Create the docker apt repo and update the cache during compile phase.
+  dockerrepo = template '/etc/apt/sources.list.d/docker.list' do
     source 'docker.list.erb'
     owner 'root'
     group 'root'
     mode '0644'
   end
 
+  aptupdate = execute 'apt-get update' do
+    action :nothing
+  end
+
+  dockerrepo.run_action(:create)
+  aptupdate.run_action(:run)
+
+  # Now we should be able to install this without issues.
   package 'lxc-docker' do
     action :install
   end

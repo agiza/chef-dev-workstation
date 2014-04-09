@@ -1,4 +1,4 @@
-# encoding: UTF-8
+# encodin: UTF-8
 # Cookbook Name:: chef-dev-workstation
 # Recipe:: linux_setup
 #
@@ -66,12 +66,7 @@ when 'centos', 'redhat', 'scientific', 'amazon', 'oracle'
     not_if "rpm -q gcc"
   end
 when 'ubuntu', 'debian'
-  # This bit of hackery is here because it won't work if we apt-get update
-  # during the run phase.  It must get executed during compile.
-  aptupdate = execute 'apt-get update' do
-    action :nothing
-  end
-  aptupdate.run_action(:run)
+  # Only the docker recipe requires special treatment.
 end
 
 # Take the default package_list for our platform and install packages
