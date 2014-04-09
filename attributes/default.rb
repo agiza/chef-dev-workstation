@@ -9,6 +9,7 @@
 default['admin']['username'] = 'admin'
 default['admin']['password'] = '$1$2COvX4FL$mTFCyb8YRGTOtLMTcEkeG1'
 default['admin']['grantsudo'] = true
+default['admin']['gemrepo'] = 'http://rubygems.org'
 
 # Ruby Gems that you want to have on your workstation.
 default['admin']['testgems'] = %w(berkshelf foodcritic test-kitchen kitchen-vagrant kitchen-docker chefspec strainer rubocop ruby-wmi knife-essentials knife-windows knife-spork knife-ec2 knife-vsphere knife-flip serverspec)

@@ -128,5 +128,7 @@ end
 ##############################################################################
 
 node['admin']['testgems'].each do |gem|
-  gem_package gem
+  gem_package gem do
+    source node['admin']['gemrepo']
+  end
 end

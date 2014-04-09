@@ -6,7 +6,12 @@
 # Warn the user that they need to reboot if kernel was updated
 log 'message' do
   level :info
-  message 'The kernel was updated, you should reboot this instance.'
+  message <<-END.gsub(/^ {4}/, '')
+    *********************************************************************
+    *                    WARNING: Reboot Required                       *
+    *            The kernel on this instance was updated.               *
+    *********************************************************************
+  END
   action :nothing
 end
 
@@ -39,6 +44,11 @@ when 'centos', 'redhat', 'scientific', 'amazon', 'oracle'
     not_if "grep '^SELINUX=disabled$' /etc/selinux/config"
     # notifies :run, "execute[reboot]"
     notifies :write, 'log[message]'
+  end
+
+  # Enable and start docker
+  service 'docker' do
+    action [ :enable, :start ]
   end
 
   # Reboot the machine to activate new kernel and disable SElinux permanently.
@@ -83,6 +93,11 @@ when 'ubuntu', 'debian'
     not_if { node['platform_version'] == '13.10' }
     # notifies :run, "execute[reboot]"
     notifies :write, "log[message]"
+  end
+
+  # Start up docker
+  service 'docker' do
+    action [ :enable, :start ]
   end
 
   # Reboot the machine to activate new kernel
