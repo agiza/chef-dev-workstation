@@ -43,7 +43,7 @@ describe 'chef-dev-workstation::linux_setup' do
   end
 
   it 'creates the pathogen configuration file' do
-    expect(chef_run).to create_remote_file("/home/#{adminuser}/.vim/autoload/pathogen.vim")
+    expect(chef_run).to render_file("/home/#{adminuser}/.vim/autoload/pathogen.vim")
   end
 
   it 'clones the vim-sensible git repository' do

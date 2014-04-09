@@ -6,31 +6,31 @@
 }
 
 @test "Test Kitchen is installed." {
-    run su - chef -c "/opt/chef/embedded/bin/kitchen --version"
+    run su - vagrant -c "/opt/chef/embedded/bin/kitchen --version"
     [ "$status" -eq 0 ]
 }
 
 @test "Berkshelf is installed." {
-    run su - chef -c "/opt/chef/embedded/bin/berks --version"
+    run su - vagrant -c "/opt/chef/embedded/bin/berks --version"
     [ "$status" -eq 0 ]
 }
 
 @test "Foodcritic is installed." {
-    run su - chef -c "/opt/chef/embedded/bin/foodcritic --version"
+    run su - vagrant -c "/opt/chef/embedded/bin/foodcritic --version"
     [ "$status" -eq 0 ]
 }
 
 @test "Rubocop is installed." {
-    run su - chef -c "/opt/chef/embedded/bin/rubocop --version"
+    run su - vagrant -c "/opt/chef/embedded/bin/rubocop --version"
     [ "$status" -eq 0 ]
 }
 
 @test "ChefSpec is installed." {
-    run su - chef -c "/opt/chef/embedded/bin/rspec --version"
+    run su - vagrant -c "/opt/chef/embedded/bin/rspec --version"
     [ "$status" -eq 0 ]
 }
 
 @test "Knife is installed." {
-    run su - chef -c "/opt/chef/bin/knife --version"
+    run su - vagrant -c "/opt/chef/bin/knife --version"
     [ "$status" -eq 0 ]
 }
