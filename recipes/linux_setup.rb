@@ -66,7 +66,11 @@ when 'centos', 'redhat', 'scientific', 'amazon', 'oracle'
   end
 
 when 'ubuntu', 'debian'
-  execute 'apt-get update'
+  aptupdate = execute 'apt-get update' do
+    action :nothing
+  end
+
+  aptupdate.run_action(:run)
 
   package 'build-essential' do
     action :install
