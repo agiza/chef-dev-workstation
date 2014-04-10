@@ -23,8 +23,12 @@ platforms:
   driver_config:
     image: scarolan/chef_ubuntu_workstation
     platform: ubuntu
+- name: centos-prebuilt
+  driver_config:
+    image: scarolan/chef_centos_workstation
+    platform: centos
 suites:
-  - name: chefuser
+  - name: native_docker
     run_list:
     - recipe[chef-dev-workstation::default]
     attributes:
