@@ -82,7 +82,11 @@ when 'ubuntu', 'debian'
   dockerrepo.run_action(:create)
   aptupdate.run_action(:run)
 
-  # Now we should be able to install this without issues.
+  # Now we should be able to install these without issues.
+  package 'lxc' do
+    action :install
+  end
+
   package 'lxc-docker' do
     action :install
   end

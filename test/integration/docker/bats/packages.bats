@@ -1,6 +1,6 @@
 #!/usr/bin/env bats
 
-@test "development tools are installed" {
+@test "Development tools are installed" {
   run gcc --version
   [ "$status" -eq 0 ]
 }
