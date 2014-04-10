@@ -92,7 +92,7 @@ when 'ubuntu', 'debian'
     action :install
     not_if { node['platform_version'] == '13.10' }
     # notifies :run, "execute[reboot]"
-    notifies :write, "log[message]"
+    notifies :write, "log[reboot_message]"
   end
 
   # Start up docker
