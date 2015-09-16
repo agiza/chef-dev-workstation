@@ -1,6 +1,7 @@
 # chef-dev-workstation cookbook
 [![Build Status](https://travis-ci.org/scarolan/chef-dev-workstation.svg?branch=master)](https://travis-ci.org/scarolan/chef-dev-workstation)
 
+NOTE: This cookbook has largely been deprecated by the ChefDK, which installs most of the components listed below.  There are also better workstation cookbooks available on github.
 
 This cookbook contains recipes to set up a cookbook development environment on Windows or *nix machines.  Many Chef users have requested an easy way to set up their system with all the basics required to get started with cookbook authoring and testing, and that is the purpose of this cookbook. Feature requests are most welcome!
 
